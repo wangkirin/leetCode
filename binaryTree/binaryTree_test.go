@@ -2,10 +2,15 @@ package binaryTree
 
 import "testing"
 
+func TestBuildTree(t *testing.T) {
+	inorder := []int{9, 3, 15, 20, 7}
+	postorder := []int{9, 15, 7, 20, 3}
+	tree := buildTree(inorder, postorder)
+	t.Log(tree.Val)
+	t.Log(tree.Left.Val)
+}
 
-
-
-func TestMaxDepth(t *testing.T){
+func TestMaxDepth(t *testing.T) {
 	bTree := new(TreeNode)
 	bTree.Val = 3
 
@@ -23,11 +28,9 @@ func TestMaxDepth(t *testing.T){
 	l1RightRight.Val = 7
 	l1Right.Right = l1RightRight
 
-
 	t.Log(maxDepth(bTree))
 
 }
-
 
 func TestLevelOrderCase1(t *testing.T) {
 	bTree := new(TreeNode)

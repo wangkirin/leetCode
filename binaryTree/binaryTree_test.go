@@ -10,6 +10,14 @@ func TestBuildTree(t *testing.T) {
 	t.Log(tree.Left.Val)
 }
 
+func TestBuildTreeFromPreAndInorder(t *testing.T) {
+	inorder := []int{9, 3, 15, 20, 7}
+	preorder := []int{3, 9, 20, 15, 7}
+	tree := buildTreePreAndInorder(preorder, inorder)
+	t.Log(tree.Val)
+	t.Log(tree.Left.Val)
+}
+
 func TestMaxDepth(t *testing.T) {
 	bTree := new(TreeNode)
 	bTree.Val = 3

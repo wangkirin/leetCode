@@ -9,8 +9,6 @@ package binaryTree
  * }
  */
 
-
-
 // Reference: https://blog.csdn.net/zhangxiangDavaid/article/details/37115355
 // Memory Limit Exceeded
 
@@ -29,7 +27,7 @@ func postorderTraversal(root *TreeNode) []int {
 		}
 		p = stack[len(stack)-1]
 		stack = stack[0 : len(stack)-1]
-		if (p.Right == nil || p.Right == lastVisit ){
+		if p.Right == nil || p.Right == lastVisit {
 			result = append(result, p.Val)
 			lastVisit = p
 		} else {

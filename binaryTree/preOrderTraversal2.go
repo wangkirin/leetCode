@@ -9,8 +9,6 @@ package binaryTree
  * }
  */
 
-
-
 func preorderTraversal2(root *TreeNode) []int {
 	result := make([]int, 0)
 	stack := make([]*TreeNode, 0)
@@ -21,8 +19,8 @@ func preorderTraversal2(root *TreeNode) []int {
 			stack = append(stack, p)
 			p = p.Left
 		}
-		p = stack[len(stack) - 1]
-		stack = stack[0:len(stack)-1]
+		p = stack[len(stack)-1]
+		stack = stack[0 : len(stack)-1]
 		p = p.Right
 	}
 	return result

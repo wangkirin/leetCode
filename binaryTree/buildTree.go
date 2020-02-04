@@ -1,7 +1,5 @@
 package binaryTree
 
-import "fmt"
-
 //疑问： 二叉树节点上的值重复？
 
 func buildTree(inorder []int, postorder []int) *TreeNode {

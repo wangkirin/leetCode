@@ -1,10 +1,10 @@
 package binaryTree
 
 func maxDepth(root *TreeNode) int {
-	if root == nil   {
+	if root == nil {
 		return 0
 	}
-	if root.Left == nil && root.Right == nil{
+	if root.Left == nil && root.Right == nil {
 		return 1
 	}
 

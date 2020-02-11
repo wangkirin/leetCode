@@ -1,4 +1,4 @@
-package queue_stack
+package numIslands
 
 //https://github.com/aQuaYi/LeetCode-in-Go/blob/master/Algorithms/0200.number-of-islands/number-of-islands_test.go
 import (

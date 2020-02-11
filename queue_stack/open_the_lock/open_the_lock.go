@@ -1,4 +1,4 @@
-package queue_stack
+package open_the_lock
 
 // No.752
 

@@ -1,4 +1,4 @@
-package queue_stack
+package numSquares
 
 import (
 	"fmt"

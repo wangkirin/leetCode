@@ -1,4 +1,4 @@
-package queue_stack
+package circularqueue
 
 //NO. 622
 

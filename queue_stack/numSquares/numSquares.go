@@ -1,4 +1,4 @@
-package queue_stack
+package numSquares
 
 import (
 	"math"
@@ -50,3 +50,17 @@ func maxSquareRoot(n int) int {
 	}
 	return int(math.Floor(math.Sqrt(float64(n))))
 }
+
+//// 返回 x 的平方根的整数部分
+//// 这个函数比 int(math.Sqrt(float64(x))) 快的多
+//// 详见 benchmark 的结果
+//func intSqrt(x int) int {
+//	res := x
+//
+//	// 牛顿法求平方根
+//	for res*res > x {
+//		res = (res + x/res) / 2
+//	}
+//
+//	return res
+//}

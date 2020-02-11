@@ -8,7 +8,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-// tcs is testcase slice
+// tcsnumSquares is testcase slice
 var tcs = []struct {
 	grid [][]byte
 	ans  int

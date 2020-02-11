@@ -7,7 +7,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-// tcs is testcase slice
+// tcsnumSquares is testcase slice
 //https://github.com/aQuaYi/LeetCode-in-Go/blob/master/Algorithms/0752.open-the-lock/open-the-lock_test.go
 var tcs1 = []struct {
 	deadends []string

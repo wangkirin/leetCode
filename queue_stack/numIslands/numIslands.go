@@ -3,6 +3,17 @@ package numIslands
 import "container/list"
 
 //No. 200
+
+
+//DFS方法
+//线性扫描整个二维网格，如果一个结点包含 1，则以其为根结点启动深度优先搜索。在深度优先搜索过程中，每个访问过的结点被标记为 0。计数启动深度优先搜索的根结点的数量，即为岛屿的数量。
+
+
+
+
+
+
+//BFS方法
 func numIslands(grid [][]byte) int {
 	nr := len(grid)
 	if nr == 0 {

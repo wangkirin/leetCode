@@ -1,6 +1,5 @@
 package target_sum
 
-
 //No.494
 //给定一个非负整数数组，a1, a2, ..., an, 和一个目标数，S。现在你有两个符号 + 和 -。对于数组中的任意一个整数，你都可以从 + 或 -中选择一个符号添加在前面。
 //
@@ -25,23 +24,23 @@ package target_sum
 //初始的数组的和不会超过1000。
 //保证返回的最终结果能被32位整数存下。
 
-
-//解法1：枚举+递归
-
-var count int
-func findTargetSumWays(nums []int, S int) int {
-	count=0
-	calculate(nums,0,0,S)
-	return count
-}
-
-func calculate(nums []int,i int, sum int,S int) {
-	if i==len(nums) {
-		if sum==S {
-			 count++
-		}
-	}else {
-		calculate(nums,i+1,sum+nums[i],S)
-		calculate(nums,i+1,sum-nums[i],S)
-	}
-}
+////解法1：枚举+递归
+//
+//var count int
+//
+//func findTargetSumWays(nums []int, S int) int {
+//	count = 0
+//	calculate(nums, 0, 0, S)
+//	return count
+//}
+//
+//func calculate(nums []int, i int, sum int, S int) {
+//	if i == len(nums) {
+//		if sum == S {
+//			count++
+//		}
+//	} else {
+//		calculate(nums, i+1, sum+nums[i], S)
+//		calculate(nums, i+1, sum-nums[i], S)
+//	}
+//}

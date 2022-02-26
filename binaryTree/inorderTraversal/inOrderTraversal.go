@@ -16,8 +16,6 @@ type TreeNode struct {
 
 //N0.94
 
-
-
 // 迭代算法
 //func inorderTraversal(root *TreeNode) []int {
 //	result := make([]int, 0)
@@ -37,32 +35,20 @@ type TreeNode struct {
 //	return result
 //}
 
+//递归算法（DFS）
 
-//递归算法
-var result=make([]int,0)
+func inorderTraversal(root *TreeNode) []int {
 
-func inorderTraversal(root *TreeNode) []int   {
-	if root==nil {
-		return nil
+	result := []int{}
+	var inorder func(node *TreeNode)
+	inorder = func(node *TreeNode) {
+		if node == nil {
+			return
+		}
+		inorder(node.Left)
+		result = append(result, node.Val)
+		inorder(node.Right)
 	}
 	inorder(root)
 	return result
 }
-
-func inorder(root *TreeNode) {
-	if root.Left!=nil{
-		inorder(root.Left)
-	}
-	if root!=nil{
-		result=append(result,root.Val)
-	}
-	if root.Right!=nil{
-		inorder(root.Right)
-	}
-}
-
-
-
-
-
-

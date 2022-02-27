@@ -15,28 +15,45 @@ type TreeNode struct {
 	Right *TreeNode
 }
 
+//Version2
+
 func preorderTraversal(root *TreeNode) []int {
-	if root == nil {
-		return []int{}
-	}
-
-	var stack []*TreeNode
-	var nodes []int
-
-	stack = append(stack, root)
-
-	for len(stack) != 0 {
-		lastNode := stack[len(stack)-1]
-		stack = stack[:len(stack)-1]
-		nodes = append(nodes, lastNode.Val)
-
-		if lastNode.Right != nil {
-			stack = append(stack, lastNode.Right)
+	out := []int{}
+	var pre func(rootNode *TreeNode)
+	pre = func(rootNode *TreeNode) {
+		if rootNode == nil {
+			return
 		}
-		if lastNode.Left != nil {
-			stack = append(stack, lastNode.Left)
-		}
+		out = append(out, rootNode.Val)
+		pre(rootNode.Left)
+		pre(rootNode.Right)
 	}
-
-	return nodes
+	pre(root)
+	return out
 }
+
+//func preorderTraversal(root *TreeNode) []int {
+//	if root == nil {
+//		return []int{}
+//	}
+//
+//	var stack []*TreeNode
+//	var nodes []int
+//
+//	stack = append(stack, root)
+//
+//	for len(stack) != 0 {
+//		lastNode := stack[len(stack)-1]
+//		stack = stack[:len(stack)-1]
+//		nodes = append(nodes, lastNode.Val)
+//
+//		if lastNode.Right != nil {
+//			stack = append(stack, lastNode.Right)
+//		}
+//		if lastNode.Left != nil {
+//			stack = append(stack, lastNode.Left)
+//		}
+//	}
+//
+//	return nodes
+//}

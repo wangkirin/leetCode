@@ -7,7 +7,6 @@ func main() {
 }
 func isPalindrome(s string) bool {
 	s = strings.ToLower(s)
-	strings.ReplaceAll(s, " ", "")
 	left := 0
 	r := []byte(s)
 	right := len(r) - 1

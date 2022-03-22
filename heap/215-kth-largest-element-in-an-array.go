@@ -1,8 +1,8 @@
 package main
 
 import (
+	"container/heap"
 	"fmt"
-	"sort"
 )
 
 func main() {
@@ -10,38 +10,52 @@ func main() {
 }
 
 //排序
-func findKthLargest(nums []int, k int) int {
-	sort.Sort(sort.Reverse(sort.IntSlice(nums)))
-	return nums[k-1]
-
-}
+//func findKthLargest(nums []int, k int) int {
+//	sort.Sort(sort.Reverse(sort.IntSlice(nums)))
+//	return nums[k-1]
+//
+//}
 
 ////堆
-//func findKthLargest(nums []int, k int) int {
-//	d := &heapInt2{}
-//	for _, v := range nums {
-//		heap.Push(d, v)
-//	}
-//	for i := 0; i < k-1; i++ {
-//		heap.Pop(d)
-//	}
-//	return d.Peek()
-//}
-//
-//type heapInt2 []int
-//
-////Less  小于就是小跟堆，大于号就是大根堆
-//func (h *heapInt2) Less(i, j int) bool { return (*h)[i] > (*h)[j] }
-//func (h *heapInt2) Swap(i, j int)      { (*h)[i], (*h)[j] = (*h)[j], (*h)[i] }
-//func (h *heapInt2) Len() int           { return len(*h) }
-//func (h *heapInt2) Push(x interface{}) {
-//	*h = append(*h, x.(int))
-//}
-//func (h *heapInt2) Pop() interface{} {
-//	t := (*h)[len(*h)-1]
-//	*h = (*h)[:len(*h)-1]
-//	return t
-//}
-//func (h *heapInt2) Peek() int {
-//	return (*h)[0]
-//}
+type HeapArray []int
+
+func findKthLargest(nums []int, k int) int {
+	if len(nums) == 1 {
+		return nums[0]
+	}
+	ha := &HeapArray{}
+	heap.Init(ha)
+	for _, num := range nums {
+		heap.Push(ha, num)
+	}
+	ans := 0
+	for i := 0; i < k; i++ {
+		if i == k-1 {
+			ans = heap.Pop(ha).(int)
+			return ans
+		}
+		heap.Pop(ha)
+	}
+	return ans
+}
+func (h HeapArray) Len() int { return len(h) }
+func (h HeapArray) Less(i, j int) bool {
+	return h[i] > h[j]
+}
+func (h HeapArray) Swap(i, j int) {
+	h[i], h[j] = h[j], h[i]
+}
+
+func (h *HeapArray) Push(x interface{}) {
+	// Push 和 Pop 使用 pointer receiver 作为参数，
+	// 因为它们不仅会对切片的内容进行调整，还会修改切片的长度。
+	*h = append(*h, x.(int))
+}
+
+func (h *HeapArray) Pop() interface{} {
+	old := *h
+	n := len(old)
+	x := old[n-1]
+	*h = old[0 : n-1]
+	return x
+}

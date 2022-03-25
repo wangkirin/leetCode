@@ -27,6 +27,7 @@ func findKthLargest(nums []int, k int) int {
 	heap.Init(ha)
 	for _, num := range nums {
 		heap.Push(ha, num)
+
 	}
 	ans := 0
 	for i := 0; i < k; i++ {

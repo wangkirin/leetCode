@@ -4,6 +4,43 @@ func main() {
 
 }
 
+//二分法找到元素，然后再往左右扩展
+func searchRange(nums []int, target int) []int {
+	l := 0
+	r := len(nums) - 1
+	fist := -1
+	for l <= r {
+		mid := l + (r-l)/2
+		if nums[mid] == target {
+			fist = mid
+			break
+		} else if nums[mid] < target {
+			l = mid + 1
+		} else {
+			r = mid - 1
+		}
+	}
+	if fist == -1 {
+		return []int{-1, -1}
+	}
+	ls, rs := fist, fist
+	for ls >= 1 {
+		if nums[ls-1] == target {
+			ls -= 1
+			continue
+		}
+		break
+	}
+	for rs <= len(nums)-2 {
+		if nums[rs+1] == target {
+			rs += 1
+			continue
+		}
+		break
+	}
+	return []int{ls, rs}
+}
+
 //考虑 target 开始和结束位置，其实我们要找的就是数组中「第一个等于target 的位置」和「第一个大于 target 的位置减一」
 // 即，target向左收缩一次，target向右收缩一次
 // 用两个边界方法

@@ -34,6 +34,7 @@ func searchRange(nums []int, target int) []int {
 	for rs <= len(nums)-2 {
 		if nums[rs+1] == target {
 			rs += 1
+
 			continue
 		}
 		break

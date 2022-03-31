@@ -6,20 +6,29 @@ func main() {
 
 }
 func leastInterval(tasks []byte, n int) int {
-	pq := new(PriorityQueue)
+	pq := make(PriorityQueue, 1)
+	heap.Init(&pq)
 	indexmap := make(map[byte]int)
 	for _, task := range tasks {
-		if _, ok := indexmap {
-
+		if _, ok := indexmap[task]; ok {
+			pq[indexmap[task]].priority += 1
+			heap.Fix(&pq, indexmap[task])
+		} else {
+			item := &Item{
+				value:    task,
+				priority: 1,
+			}
+			heap.Push(&pq, item)
+			indexmap[task] = len(pq)
 		}
-
 	}
+	
 }
 
 // Item 是优先队列中包含的元素。
 type Item struct {
-	value    string // 元素的值，可以是任意字符串。
-	priority int    // 元素在队列中的优先级。
+	value    byte // 元素的值，可以是任意字符串。
+	priority int  // 元素在队列中的优先级。
 	// 元素的索引可以用于更新操作，它由 heap.Interface 定义的方法维护。
 	index int // 元素在堆中的索引。
 }

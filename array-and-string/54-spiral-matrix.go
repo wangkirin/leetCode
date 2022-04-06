@@ -29,7 +29,7 @@ func spiralOrder(matrix [][]int) []int {
 		visited[row][column] = true
 		nextRow, nextColumn := row+directions[directionIndex][0], column+directions[directionIndex][1]
 		if nextRow < 0 || nextRow >= rows || nextColumn < 0 || nextColumn >= columns || visited[nextRow][nextColumn] {
-			//判断方向
+			//转换方向
 			directionIndex = (directionIndex + 1) % 4
 		}
 		row += directions[directionIndex][0]

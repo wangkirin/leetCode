@@ -4,7 +4,7 @@ func main() {
 
 }
 
-//前缀树解法
+//前缀树+DFS解法
 type WordDictionary struct {
 	isEnd bool
 	next  [26]*WordDictionary
@@ -32,11 +32,27 @@ func (this *WordDictionary) AddWord(word string) {
 func (this *WordDictionary) Search(word string) bool {
 	node := this
 	words := []byte(word)
-	for _, b := range words {
-		if b == '.' {
-			
+	var dfs func(i int, n *WordDictionary) bool
+	dfs = func(i int, n *WordDictionary) bool {
+		if i == len(words)-1 {
+			return n.isEnd
 		}
+		c := words[i]
+		if c != '.' {
+			child := n.next[c-'a']
+			if child != nil && dfs(i+1, child) {
+				return true
+			}
+		} else {
+			for _, dictionary := range n.next {
+				if dictionary != nil && dfs(i+1, dictionary) {
+					return true
+				}
+			}
+		}
+		return false
 	}
+	return dfs(0, node)
 }
 
 //暴力解法

@@ -31,6 +31,7 @@ func (this *Trie) Insert(word string) {
 }
 
 func (this *Trie) Search(word string) bool {
+
 	words := []byte(word)
 	node := this
 	for _, b := range words {

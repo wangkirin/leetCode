@@ -7,15 +7,23 @@ type Node struct {
 }
 
 func copyRandomList(head *Node) *Node {
-	ans := new(Node)
-	for head.Next != nil {
+	if head == nil {
+		return nil
+	}
+	nodemap := make(map[*Node]*Node)
+	cur := head
+	for cur != nil {
 		n := new(Node)
-		ans.Val = head.Val
-		ans.Next = head.Next
-		ans.Random = head.Random
-		head = head.Next
-		ans = ans.Next
+		n.Val = cur.Val
+		nodemap[cur] = n
+		cur = cur.Next
+	}
+	cur = head
+	for cur != nil {
+		nodemap[cur].Next = nodemap[cur.Next]
+		nodemap[cur].Random = nodemap[cur.Random]
+		cur = cur.Next
 	}
 
-	return ans
+	return nodemap[head]
 }

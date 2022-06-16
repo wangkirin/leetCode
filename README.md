@@ -94,3 +94,4 @@ MyleetCode Repository
 692- TOPK 
 496- 下一个更大元素 I
 503- 下一个更大元素 II
+1721- 交换链表中的节点

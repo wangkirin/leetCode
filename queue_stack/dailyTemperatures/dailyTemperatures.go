@@ -7,7 +7,26 @@ func main() {
 }
 
 //单调栈解法
+
 func dailyTemperatures(temperatures []int) []int {
+	ans := make([]int, len(temperatures))
+	stack := []int{}
+	for i := len(temperatures) - 1; i >= 0; i-- {
+		for len(stack) > 0 && temperatures[stack[len(stack)-1]] < temperatures[i] {
+			stack = stack[:len(stack)-1]
+		}
+		if len(stack) == 0 {
+			ans[i] = 0
+
+		} else {
+			ans[i] = stack[len(stack)-1] - i
+		}
+		stack = append(stack, i)
+	}
+	return ans
+}
+
+func dailyTemperatures1(temperatures []int) []int {
 	out := make([]int, len(temperatures))
 	stack := []int{}
 

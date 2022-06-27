@@ -2,14 +2,44 @@ package main
 
 import (
 	"fmt"
+	"math"
 )
 
 func main() {
-	fmt.Println(minSubArrayLen(11, []int{1, 2, 3, 4, 5}))
+	fmt.Println(minSubArrayLen(7, []int{2, 3, 1, 2, 4, 3}))
+	fmt.Println(minSubArrayLen(4, []int{1, 4, 4}))
+	fmt.Println(minSubArrayLen(11, []int{1, 1, 1, 1, 1, 1, 1, 1}))
+}
+
+func minSubArrayLen(target int, nums []int) int {
+	preSum := make([]int, len(nums)+1)
+	preSum[0] = 0
+	for i := 0; i < len(nums); i++ {
+		preSum[i+1] = preSum[i] + nums[i]
+	}
+	l, minL := 0, math.MaxInt
+	flag := false
+	for r := 0; r < len(preSum); r++ {
+		for l < r && preSum[r]-preSum[l] >= target {
+			flag = true
+			l++
+			minL = min(minL, r-l+1)
+		}
+	}
+	if !flag {
+		minL = 0
+	}
+	return minL
+}
+func min(x, y int) int {
+	if x < y {
+		return x
+	}
+	return y
 }
 
 //前缀和+快慢指针
-func minSubArrayLen(target int, nums []int) int {
+func minSubArrayLen1(target int, nums []int) int {
 	preSum := make([]int, len(nums)+1)
 	preSum[0] = 0
 	minLen := 0
@@ -36,12 +66,6 @@ func minSubArrayLen(target int, nums []int) int {
 		}
 	}
 	return minLen
-}
-func min(x, y int) int {
-	if x < y {
-		return x
-	}
-	return y
 }
 
 //滑窗
